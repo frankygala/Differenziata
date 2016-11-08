@@ -1,0 +1,607 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		313899F91DD0D54600BC78D0 /* Services.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313899F81DD0D54600BC78D0 /* Services.swift */; };
+		313899FC1DD0D62D00BC78D0 /* ToolBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313899FB1DD0D62D00BC78D0 /* ToolBarViewController.swift */; };
+		313899FF1DD0D6DC00BC78D0 /* CALENDARIO_GEOVEST2016_CREVALCORE_WEB.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 313899FE1DD0D6DC00BC78D0 /* CALENDARIO_GEOVEST2016_CREVALCORE_WEB.pdf */; };
+		31389A011DD0DA4500BC78D0 /* NumberiUtiliViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31389A001DD0DA4500BC78D0 /* NumberiUtiliViewController.swift */; };
+		8B4C75781DBE199E0081D397 /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4C75771DBE199E0081D397 /* Common.swift */; };
+		8B5686AB1DBDED5C004EA3D4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5686AA1DBDED5C004EA3D4 /* AppDelegate.swift */; };
+		8B5686AD1DBDED5C004EA3D4 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5686AC1DBDED5C004EA3D4 /* HomeViewController.swift */; };
+		8B5686B01DBDED5C004EA3D4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8B5686AE1DBDED5C004EA3D4 /* Main.storyboard */; };
+		8B5686B31DBDED5C004EA3D4 /* La_differenziata___Crevalcore.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8B5686B11DBDED5C004EA3D4 /* La_differenziata___Crevalcore.xcdatamodeld */; };
+		8B5686B51DBDED5C004EA3D4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8B5686B41DBDED5C004EA3D4 /* Assets.xcassets */; };
+		8B5686B81DBDED5C004EA3D4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8B5686B61DBDED5C004EA3D4 /* LaunchScreen.storyboard */; };
+		8B5686C31DBDED5C004EA3D4 /* La_differenziata___CrevalcoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5686C21DBDED5C004EA3D4 /* La_differenziata___CrevalcoreTests.swift */; };
+		8B5686CE1DBDED5C004EA3D4 /* La_differenziata___CrevalcoreUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5686CD1DBDED5C004EA3D4 /* La_differenziata___CrevalcoreUITests.swift */; };
+		8B5686DC1DBDF158004EA3D4 /* ImpostazioniViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5686DB1DBDF158004EA3D4 /* ImpostazioniViewController.swift */; };
+		8B5686DF1DBE0464004EA3D4 /* GuidaRifiutiViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5686DE1DBE0464004EA3D4 /* GuidaRifiutiViewController.swift */; };
+		8BA7300E1DC1F48700D9F9CD /* SplashScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA7300D1DC1F48700D9F9CD /* SplashScreenViewController.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		8B5686BF1DBDED5C004EA3D4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8B56869F1DBDED5C004EA3D4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8B5686A61DBDED5C004EA3D4;
+			remoteInfo = "La differenziata - Crevalcore";
+		};
+		8B5686CA1DBDED5C004EA3D4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8B56869F1DBDED5C004EA3D4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8B5686A61DBDED5C004EA3D4;
+			remoteInfo = "La differenziata - Crevalcore";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		313899F81DD0D54600BC78D0 /* Services.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Services.swift; sourceTree = "<group>"; };
+		313899FB1DD0D62D00BC78D0 /* ToolBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToolBarViewController.swift; sourceTree = "<group>"; };
+		313899FE1DD0D6DC00BC78D0 /* CALENDARIO_GEOVEST2016_CREVALCORE_WEB.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = CALENDARIO_GEOVEST2016_CREVALCORE_WEB.pdf; path = ../../../../Downloads/CALENDARIO_GEOVEST2016_CREVALCORE_WEB.pdf; sourceTree = "<group>"; };
+		31389A001DD0DA4500BC78D0 /* NumberiUtiliViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumberiUtiliViewController.swift; sourceTree = "<group>"; };
+		8B4C75771DBE199E0081D397 /* Common.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Common.swift; path = ../Common.swift; sourceTree = "<group>"; };
+		8B5686A71DBDED5C004EA3D4 /* La differenziata - Crevalcore.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "La differenziata - Crevalcore.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8B5686AA1DBDED5C004EA3D4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		8B5686AC1DBDED5C004EA3D4 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		8B5686AF1DBDED5C004EA3D4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		8B5686B21DBDED5C004EA3D4 /* La_differenziata___Crevalcore.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "La_differenziata___Crevalcore.xcdatamodel"; sourceTree = "<group>"; };
+		8B5686B41DBDED5C004EA3D4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		8B5686B71DBDED5C004EA3D4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		8B5686B91DBDED5C004EA3D4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8B5686BE1DBDED5C004EA3D4 /* La differenziata - CrevalcoreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "La differenziata - CrevalcoreTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8B5686C21DBDED5C004EA3D4 /* La_differenziata___CrevalcoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "La_differenziata___CrevalcoreTests.swift"; sourceTree = "<group>"; };
+		8B5686C41DBDED5C004EA3D4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8B5686C91DBDED5C004EA3D4 /* La differenziata - CrevalcoreUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "La differenziata - CrevalcoreUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8B5686CD1DBDED5C004EA3D4 /* La_differenziata___CrevalcoreUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "La_differenziata___CrevalcoreUITests.swift"; sourceTree = "<group>"; };
+		8B5686CF1DBDED5C004EA3D4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8B5686DB1DBDF158004EA3D4 /* ImpostazioniViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImpostazioniViewController.swift; sourceTree = "<group>"; };
+		8B5686DE1DBE0464004EA3D4 /* GuidaRifiutiViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuidaRifiutiViewController.swift; sourceTree = "<group>"; };
+		8BA7300D1DC1F48700D9F9CD /* SplashScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashScreenViewController.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8B5686A41DBDED5C004EA3D4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8B5686BB1DBDED5C004EA3D4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8B5686C61DBDED5C004EA3D4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		313899FA1DD0D55800BC78D0 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				313899F81DD0D54600BC78D0 /* Services.swift */,
+			);
+			name = Services;
+			sourceTree = "<group>";
+		};
+		313899FD1DD0D6B100BC78D0 /* PDF */ = {
+			isa = PBXGroup;
+			children = (
+				313899FE1DD0D6DC00BC78D0 /* CALENDARIO_GEOVEST2016_CREVALCORE_WEB.pdf */,
+			);
+			name = PDF;
+			sourceTree = "<group>";
+		};
+		8B56869E1DBDED5C004EA3D4 = {
+			isa = PBXGroup;
+			children = (
+				8B5686A91DBDED5C004EA3D4 /* La differenziata - Crevalcore */,
+				8B5686C11DBDED5C004EA3D4 /* La differenziata - CrevalcoreTests */,
+				8B5686CC1DBDED5C004EA3D4 /* La differenziata - CrevalcoreUITests */,
+				8B5686A81DBDED5C004EA3D4 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		8B5686A81DBDED5C004EA3D4 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8B5686A71DBDED5C004EA3D4 /* La differenziata - Crevalcore.app */,
+				8B5686BE1DBDED5C004EA3D4 /* La differenziata - CrevalcoreTests.xctest */,
+				8B5686C91DBDED5C004EA3D4 /* La differenziata - CrevalcoreUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		8B5686A91DBDED5C004EA3D4 /* La differenziata - Crevalcore */ = {
+			isa = PBXGroup;
+			children = (
+				313899FD1DD0D6B100BC78D0 /* PDF */,
+				8B4C75771DBE199E0081D397 /* Common.swift */,
+				313899FA1DD0D55800BC78D0 /* Services */,
+				8B5686DD1DBDF762004EA3D4 /* ViewController */,
+				8B5686AA1DBDED5C004EA3D4 /* AppDelegate.swift */,
+				8B5686AE1DBDED5C004EA3D4 /* Main.storyboard */,
+				8B5686B41DBDED5C004EA3D4 /* Assets.xcassets */,
+				8B5686B61DBDED5C004EA3D4 /* LaunchScreen.storyboard */,
+				8B5686B91DBDED5C004EA3D4 /* Info.plist */,
+				8B5686B11DBDED5C004EA3D4 /* La_differenziata___Crevalcore.xcdatamodeld */,
+			);
+			path = "La differenziata - Crevalcore";
+			sourceTree = "<group>";
+		};
+		8B5686C11DBDED5C004EA3D4 /* La differenziata - CrevalcoreTests */ = {
+			isa = PBXGroup;
+			children = (
+				8B5686C21DBDED5C004EA3D4 /* La_differenziata___CrevalcoreTests.swift */,
+				8B5686C41DBDED5C004EA3D4 /* Info.plist */,
+			);
+			path = "La differenziata - CrevalcoreTests";
+			sourceTree = "<group>";
+		};
+		8B5686CC1DBDED5C004EA3D4 /* La differenziata - CrevalcoreUITests */ = {
+			isa = PBXGroup;
+			children = (
+				8B5686CD1DBDED5C004EA3D4 /* La_differenziata___CrevalcoreUITests.swift */,
+				8B5686CF1DBDED5C004EA3D4 /* Info.plist */,
+			);
+			path = "La differenziata - CrevalcoreUITests";
+			sourceTree = "<group>";
+		};
+		8B5686DD1DBDF762004EA3D4 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				8BA7300D1DC1F48700D9F9CD /* SplashScreenViewController.swift */,
+				8B5686AC1DBDED5C004EA3D4 /* HomeViewController.swift */,
+				8B5686DB1DBDF158004EA3D4 /* ImpostazioniViewController.swift */,
+				8B5686DE1DBE0464004EA3D4 /* GuidaRifiutiViewController.swift */,
+				313899FB1DD0D62D00BC78D0 /* ToolBarViewController.swift */,
+				31389A001DD0DA4500BC78D0 /* NumberiUtiliViewController.swift */,
+			);
+			name = ViewController;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		8B5686A61DBDED5C004EA3D4 /* La differenziata - Crevalcore */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8B5686D21DBDED5C004EA3D4 /* Build configuration list for PBXNativeTarget "La differenziata - Crevalcore" */;
+			buildPhases = (
+				8B5686A31DBDED5C004EA3D4 /* Sources */,
+				8B5686A41DBDED5C004EA3D4 /* Frameworks */,
+				8B5686A51DBDED5C004EA3D4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "La differenziata - Crevalcore";
+			productName = "La differenziata - Crevalcore";
+			productReference = 8B5686A71DBDED5C004EA3D4 /* La differenziata - Crevalcore.app */;
+			productType = "com.apple.product-type.application";
+		};
+		8B5686BD1DBDED5C004EA3D4 /* La differenziata - CrevalcoreTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8B5686D51DBDED5C004EA3D4 /* Build configuration list for PBXNativeTarget "La differenziata - CrevalcoreTests" */;
+			buildPhases = (
+				8B5686BA1DBDED5C004EA3D4 /* Sources */,
+				8B5686BB1DBDED5C004EA3D4 /* Frameworks */,
+				8B5686BC1DBDED5C004EA3D4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8B5686C01DBDED5C004EA3D4 /* PBXTargetDependency */,
+			);
+			name = "La differenziata - CrevalcoreTests";
+			productName = "La differenziata - CrevalcoreTests";
+			productReference = 8B5686BE1DBDED5C004EA3D4 /* La differenziata - CrevalcoreTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		8B5686C81DBDED5C004EA3D4 /* La differenziata - CrevalcoreUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8B5686D81DBDED5C004EA3D4 /* Build configuration list for PBXNativeTarget "La differenziata - CrevalcoreUITests" */;
+			buildPhases = (
+				8B5686C51DBDED5C004EA3D4 /* Sources */,
+				8B5686C61DBDED5C004EA3D4 /* Frameworks */,
+				8B5686C71DBDED5C004EA3D4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8B5686CB1DBDED5C004EA3D4 /* PBXTargetDependency */,
+			);
+			name = "La differenziata - CrevalcoreUITests";
+			productName = "La differenziata - CrevalcoreUITests";
+			productReference = 8B5686C91DBDED5C004EA3D4 /* La differenziata - CrevalcoreUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		8B56869F1DBDED5C004EA3D4 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0800;
+				LastUpgradeCheck = 0800;
+				ORGANIZATIONNAME = Softweb;
+				TargetAttributes = {
+					8B5686A61DBDED5C004EA3D4 = {
+						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = H73YAGRLH6;
+						ProvisioningStyle = Automatic;
+					};
+					8B5686BD1DBDED5C004EA3D4 = {
+						CreatedOnToolsVersion = 8.0;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 8B5686A61DBDED5C004EA3D4;
+					};
+					8B5686C81DBDED5C004EA3D4 = {
+						CreatedOnToolsVersion = 8.0;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 8B5686A61DBDED5C004EA3D4;
+					};
+				};
+			};
+			buildConfigurationList = 8B5686A21DBDED5C004EA3D4 /* Build configuration list for PBXProject "La differenziata - Crevalcore" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 8B56869E1DBDED5C004EA3D4;
+			productRefGroup = 8B5686A81DBDED5C004EA3D4 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8B5686A61DBDED5C004EA3D4 /* La differenziata - Crevalcore */,
+				8B5686BD1DBDED5C004EA3D4 /* La differenziata - CrevalcoreTests */,
+				8B5686C81DBDED5C004EA3D4 /* La differenziata - CrevalcoreUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8B5686A51DBDED5C004EA3D4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8B5686B81DBDED5C004EA3D4 /* LaunchScreen.storyboard in Resources */,
+				8B5686B51DBDED5C004EA3D4 /* Assets.xcassets in Resources */,
+				313899FF1DD0D6DC00BC78D0 /* CALENDARIO_GEOVEST2016_CREVALCORE_WEB.pdf in Resources */,
+				8B5686B01DBDED5C004EA3D4 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8B5686BC1DBDED5C004EA3D4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8B5686C71DBDED5C004EA3D4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8B5686A31DBDED5C004EA3D4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				31389A011DD0DA4500BC78D0 /* NumberiUtiliViewController.swift in Sources */,
+				313899FC1DD0D62D00BC78D0 /* ToolBarViewController.swift in Sources */,
+				8B5686B31DBDED5C004EA3D4 /* La_differenziata___Crevalcore.xcdatamodeld in Sources */,
+				8B5686DF1DBE0464004EA3D4 /* GuidaRifiutiViewController.swift in Sources */,
+				8BA7300E1DC1F48700D9F9CD /* SplashScreenViewController.swift in Sources */,
+				8B5686AD1DBDED5C004EA3D4 /* HomeViewController.swift in Sources */,
+				8B5686AB1DBDED5C004EA3D4 /* AppDelegate.swift in Sources */,
+				8B4C75781DBE199E0081D397 /* Common.swift in Sources */,
+				313899F91DD0D54600BC78D0 /* Services.swift in Sources */,
+				8B5686DC1DBDF158004EA3D4 /* ImpostazioniViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8B5686BA1DBDED5C004EA3D4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8B5686C31DBDED5C004EA3D4 /* La_differenziata___CrevalcoreTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8B5686C51DBDED5C004EA3D4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8B5686CE1DBDED5C004EA3D4 /* La_differenziata___CrevalcoreUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		8B5686C01DBDED5C004EA3D4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8B5686A61DBDED5C004EA3D4 /* La differenziata - Crevalcore */;
+			targetProxy = 8B5686BF1DBDED5C004EA3D4 /* PBXContainerItemProxy */;
+		};
+		8B5686CB1DBDED5C004EA3D4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8B5686A61DBDED5C004EA3D4 /* La differenziata - Crevalcore */;
+			targetProxy = 8B5686CA1DBDED5C004EA3D4 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		8B5686AE1DBDED5C004EA3D4 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8B5686AF1DBDED5C004EA3D4 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		8B5686B61DBDED5C004EA3D4 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8B5686B71DBDED5C004EA3D4 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		8B5686D01DBDED5C004EA3D4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		8B5686D11DBDED5C004EA3D4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		8B5686D31DBDED5C004EA3D4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = H73YAGRLH6;
+				INFOPLIST_FILE = "La differenziata - Crevalcore/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "Softweb.La-differenziata---Crevalcore";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 2.3;
+			};
+			name = Debug;
+		};
+		8B5686D41DBDED5C004EA3D4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = H73YAGRLH6;
+				INFOPLIST_FILE = "La differenziata - Crevalcore/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "Softweb.La-differenziata---Crevalcore";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 2.3;
+			};
+			name = Release;
+		};
+		8B5686D61DBDED5C004EA3D4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = "La differenziata - CrevalcoreTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "Softweb.La-differenziata---CrevalcoreTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/La differenziata - Crevalcore.app/La differenziata - Crevalcore";
+			};
+			name = Debug;
+		};
+		8B5686D71DBDED5C004EA3D4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = "La differenziata - CrevalcoreTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "Softweb.La-differenziata---CrevalcoreTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/La differenziata - Crevalcore.app/La differenziata - Crevalcore";
+			};
+			name = Release;
+		};
+		8B5686D91DBDED5C004EA3D4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				INFOPLIST_FILE = "La differenziata - CrevalcoreUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "Softweb.La-differenziata---CrevalcoreUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = "La differenziata - Crevalcore";
+			};
+			name = Debug;
+		};
+		8B5686DA1DBDED5C004EA3D4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				INFOPLIST_FILE = "La differenziata - CrevalcoreUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "Softweb.La-differenziata---CrevalcoreUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = "La differenziata - Crevalcore";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		8B5686A21DBDED5C004EA3D4 /* Build configuration list for PBXProject "La differenziata - Crevalcore" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8B5686D01DBDED5C004EA3D4 /* Debug */,
+				8B5686D11DBDED5C004EA3D4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8B5686D21DBDED5C004EA3D4 /* Build configuration list for PBXNativeTarget "La differenziata - Crevalcore" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8B5686D31DBDED5C004EA3D4 /* Debug */,
+				8B5686D41DBDED5C004EA3D4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8B5686D51DBDED5C004EA3D4 /* Build configuration list for PBXNativeTarget "La differenziata - CrevalcoreTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8B5686D61DBDED5C004EA3D4 /* Debug */,
+				8B5686D71DBDED5C004EA3D4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8B5686D81DBDED5C004EA3D4 /* Build configuration list for PBXNativeTarget "La differenziata - CrevalcoreUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8B5686D91DBDED5C004EA3D4 /* Debug */,
+				8B5686DA1DBDED5C004EA3D4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		8B5686B11DBDED5C004EA3D4 /* La_differenziata___Crevalcore.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				8B5686B21DBDED5C004EA3D4 /* La_differenziata___Crevalcore.xcdatamodel */,
+			);
+			currentVersion = 8B5686B21DBDED5C004EA3D4 /* La_differenziata___Crevalcore.xcdatamodel */;
+			path = "La_differenziata___Crevalcore.xcdatamodeld";
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 8B56869F1DBDED5C004EA3D4 /* Project object */;
+}
