@@ -1,19 +1,22 @@
 //
-//  DetailViewController.swift
+//  TestViewController.swift
 //  La differenziata - Crevalcore
 //
-//  Created by Developer on 24/10/16.
+//  Created by Francesco Galasso on 10/11/16.
 //  Copyright © 2016 Softweb. All rights reserved.
 //
 
 import UIKit
-import CoreLocation
+import CoreData
 import MapKit
 
-class ImpostazioniViewController: UIViewController , CLLocationManagerDelegate, UITextFieldDelegate{
+class TestViewController: UIViewController  , UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, CLLocationManagerDelegate {
     
-    @IBOutlet weak var txtFieldIndirizzoCasa: UITextField!
-    @IBOutlet weak var txtFieldCivicoCasa: UITextField!
+    @IBOutlet var backgroundColoredViews: [UIView]!
+
+    @IBOutlet weak var textFieldIndirizzo: UITextField!
+    @IBOutlet weak var textFieldCivico: UITextField!
+    @IBOutlet weak var autocompleteTableView: UITableView!
     @IBOutlet weak var switchIndiff: UISwitch!
     @IBOutlet weak var switchCarta: UISwitch!
     @IBOutlet weak var switchVerde: UISwitch!
@@ -26,7 +29,14 @@ class ImpostazioniViewController: UIViewController , CLLocationManagerDelegate, 
     @IBOutlet weak var zoneLblRegistred: UILabel!
     @IBOutlet weak var optionControllerBtn: UIBarButtonItem!
     @IBOutlet weak var geolocationBtn: UIButton!
-    
+
+    //var autocompleteTableView: UITableView!
+    var autocompleteAddress = [String]()
+    var appDelegate : AppDelegate?
+    var managedContext : NSManagedObjectContext?
+    var entityIndirizzo : NSEntityDescription?
+    var array = [NSManagedObject]()
+    var date_last_sync : String! = ""
     var locationManager: CLLocationManager!
     var infoAddress = [String]()
     var choiceCarta: String = ""
@@ -41,23 +51,16 @@ class ImpostazioniViewController: UIViewController , CLLocationManagerDelegate, 
         self.navigationController?.navigationBar.barTintColor = UIColor(hexString: "#cf2f2f")
         self.navigationController?.navigationBar.tintColor = UIColor(hexString: "ffffff")
         self.view.backgroundColor = UIColor(hexString: "#ffffff")
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
         
-        txtFieldIndirizzoCasa.delegate = self
-        txtFieldIndirizzoCasa.delegate = self
+        load()
         
-        self.view.backgroundColor = UIColor(hexString: "#396625")
-        //loadUI("registrato")
-
         if (Common.sharedInstance.getRegistredUser()){ // true
             print("sono registrato")
             self.loadUI("registrato")
             optionControllerBtn.title = "Modifica"
             //let device = Common.sharedInstance.getDeviceToken()
             let device = "111"
+            SwiftLoading().showLoading()
             Services.sharedInstance.richiediImpostazioni(device) { (json) in
                 print("json richiediImpostazioni")
                 print(json)
@@ -79,6 +82,7 @@ class ImpostazioniViewController: UIViewController , CLLocationManagerDelegate, 
                 self.switchVerde.setOn(self.convertToSwitch(pushVerde), animated: false)
                 self.switchPlastica.setOn(self.convertToSwitch(pushPlastica), animated: false)
                 
+                SwiftLoading().hideLoading()
             }
         } else {
             print("non sono registrato")
@@ -86,20 +90,44 @@ class ImpostazioniViewController: UIViewController , CLLocationManagerDelegate, 
             self.registratoView.alpha = 0
             self.registrazioneView.alpha = 1
             self.loadUI("registrare")
-
-            // inizialmente tutti i UISwitch non sono selezionati
-            switchIndiff.setOn(false, animated: false)
-            switchCarta.setOn(false, animated: false)
-            switchVerde.setOn(false, animated: false)
-            switchPlastica.setOn(false, animated: false)
-            choiceCarta = "0"
-            choiceIndifferenziata = "0"
-            choiceVerde = "0"
-            choicePlastica = "0"
             
-            //txtFieldCivicoCasa.keyboardType = UIKeyboardType.NumberPad
+            load()
             
         }
+
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // Do any additional setup after loading the view, typically from a nib.
+        
+        //autocompleteTableView = UITableView(frame: CGRectMake(self.textField.bounds.minX,self.textField.bounds.maxY,self.textField.bounds.width,self.textField.bounds.height * 4), style: UITableViewStyle.Plain)
+        
+        appDelegate = UIApplication.sharedApplication().delegate as!AppDelegate
+        managedContext = appDelegate!.managedObjectContext
+        entityIndirizzo = NSEntityDescription.entityForName("Indirizzo", inManagedObjectContext: managedContext!)
+        
+        textFieldIndirizzo.delegate = self
+        
+        autocompleteTableView.delegate = self
+        autocompleteTableView.dataSource = self
+        autocompleteTableView.scrollEnabled = true
+        autocompleteTableView.hidden = true
+        
+        autocompleteTableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        self.registrazioneView.addSubview(autocompleteTableView)
+        
+        textFieldIndirizzo.autocorrectionType = UITextAutocorrectionType.No
+        textFieldCivico.autocorrectionType = UITextAutocorrectionType.No
+        
+        
+        // Clear background colors from labels and buttons
+        for view in backgroundColoredViews {
+            view.backgroundColor = UIColor.clearColor()
+        }
+        
+//        containerRegistrato.alpha = 0
+//        containerRegistrazione.alpha = 1
     }
     
     override func didReceiveMemoryWarning() {
@@ -108,7 +136,111 @@ class ImpostazioniViewController: UIViewController , CLLocationManagerDelegate, 
     }
     
     
+    func load() {
+        // inizialmente tutti i UISwitch non sono selezionati
+        switchIndiff.setOn(false, animated: false)
+        switchCarta.setOn(false, animated: false)
+        switchVerde.setOn(false, animated: false)
+        switchPlastica.setOn(false, animated: false)
+        choiceCarta = "0"
+        choiceIndifferenziata = "0"
+        choiceVerde = "0"
+        choicePlastica = "0"
+        
+        addressLblRegistred.text = ""
+        numberLblRegistred.text = ""
+        zoneLblRegistred.text = ""
+    }
     
+    // MARK: - TextField
+    
+    
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool
+    {
+        autocompleteTableView.hidden = false
+        var substring = (textField.text! as NSString).stringByReplacingCharactersInRange(range, withString: string) as NSString
+
+        searchAutocompleteEntries(substring as String)
+        return true      // not sure about this - could be false
+    }
+    
+
+    func searchAutocompleteEntries(toSearch: String) {
+        
+        autocompleteAddress.removeAll(keepCapacity: false)
+
+        appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        managedContext = appDelegate!.managedObjectContext
+        
+        // Create Fetch Request
+        let fetchRequest = NSFetchRequest(entityName: "Indirizzo")
+        
+        
+        //var toSearch : String = self.textFieldIndirizzo.text!
+        // Add Predicate
+        let predicate = NSPredicate(format: "indirizzo CONTAINS[c] %@", toSearch)
+        fetchRequest.predicate = predicate
+        
+        print("sto cercando > \(toSearch)")
+        do {
+            let records = try managedContext!.executeFetchRequest(fetchRequest) as! [NSManagedObject]
+            
+            if(records.isEmpty){
+                autocompleteAddress.removeAll(keepCapacity: false)
+                autocompleteTableView.hidden = true
+            } else {
+                for record in records {
+                    var curString = record.valueForKey("indirizzo")!
+                    autocompleteAddress.append(curString as! String)
+                }
+                autocompleteTableView.reloadData()
+                //
+            }
+        } catch {
+            let saveError = error as NSError
+            print("\(saveError), \(saveError.userInfo)")
+        }
+        
+    }
+    
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 1
+    }
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return autocompleteAddress.count
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        
+        let autoCompleteRowIdentifier = "cell"
+        var cell : UITableViewCell = tableView.dequeueReusableCellWithIdentifier(autoCompleteRowIdentifier, forIndexPath: indexPath) as UITableViewCell
+        let index = indexPath.row as Int
+        
+        cell.textLabel!.text = autocompleteAddress[index]
+        
+        return cell
+        
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let selectedCell : UITableViewCell = tableView.cellForRowAtIndexPath(indexPath)!
+        print(selectedCell.textLabel?.text)
+        textFieldIndirizzo.text = self.autocompleteAddress[indexPath.row]
+        
+        // su tap della cella nascondo keyboard e scroll view
+        view.endEditing(true)
+        self.autocompleteTableView.hidden = true
+    }
+    
+    
+    // MARK: - Remove Keyboard & hide TableView
+
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        // tap everywhere on view to dismiss keyboard & tableView
+        self.view.endEditing(true)
+        self.autocompleteTableView.hidden = true
+    }
+
     // MARK: - UI
     
     func loadUI(scelta: String){
@@ -128,9 +260,9 @@ class ImpostazioniViewController: UIViewController , CLLocationManagerDelegate, 
             //optionControllerBtn.enabled = true
             optionControllerBtn.title = "Salva"
             optionControllerBtn.enabled = false
-
             
-
+            
+            
         default:
             break
         }
@@ -185,24 +317,19 @@ class ImpostazioniViewController: UIViewController , CLLocationManagerDelegate, 
             // Nome via
             if let street = placeMark.addressDictionary!["Thoroughfare"] as? NSString {
                 //self.infoAddress.append(street as String)
-                self.txtFieldIndirizzoCasa.text = street as String
+                self.textFieldIndirizzo.text = street as String
                 print(street)
             }
             
             // Civico
             if let buildingNumber = placeMark.addressDictionary!["SubThoroughfare"] as? NSString {
                 //self.infoAddress.append(buildingNumber as String)
-                self.txtFieldCivicoCasa.text = buildingNumber as String
+                self.textFieldCivico.text = buildingNumber as String
                 print(buildingNumber)
             }
             
             self.geolocationBtn.enabled = true
             
-            //self.txtFieldIndirizzoCasa.addTarget(self, action: #selector(ImpostazioniViewController.textFieldNumberDidChange(_:)), forControlEvents: UIControlEvents.EditingChanged)
-            self.txtFieldIndirizzoCasa.addTarget(self, action: #selector(ImpostazioniViewController.textFieldNumberDidChange(_:)), forControlEvents: UIControlEvents.AllEvents)
-            self.txtFieldCivicoCasa.addTarget(self, action: #selector(ImpostazioniViewController.textFieldAddressDidChange(_:)), forControlEvents: UIControlEvents.AllEvents)
-
-
         })
         
         locationManager.stopUpdatingLocation()
@@ -228,7 +355,7 @@ class ImpostazioniViewController: UIViewController , CLLocationManagerDelegate, 
             print("txtfield vuoto")
             self.flag2 = false
             self.verifyBtn.enabled = false
-
+            
         }
     }
     
@@ -275,7 +402,7 @@ class ImpostazioniViewController: UIViewController , CLLocationManagerDelegate, 
             return flag
         }
     }
-
+    
     
     func callAlert(string : String){
         
@@ -320,8 +447,8 @@ class ImpostazioniViewController: UIViewController , CLLocationManagerDelegate, 
         } else {
             // servizio update & torno alla Home
             var uuid = Common.sharedInstance.getDeviceToken()
-            var via = txtFieldIndirizzoCasa.text
-            var civico = txtFieldCivicoCasa.text
+            var via = textFieldIndirizzo.text
+            var civico = textFieldCivico.text
             Services.sharedInstance.updateInformazioni(uuid, via: via!, civico: civico!, carta: choiceCarta, plastica: choicePlastica , indiff: choiceIndifferenziata, verde: choiceVerde) { (json) in
                 print("json updateInformazioni")
                 print(json)
@@ -334,13 +461,13 @@ class ImpostazioniViewController: UIViewController , CLLocationManagerDelegate, 
     
     @IBAction func actionVerifyBtn(sender: UIButton) {
         
-        var indirizzo : String = self.txtFieldIndirizzoCasa.text!
-        var numero : String = self.txtFieldCivicoCasa.text!
+        var indirizzo : String = self.textFieldIndirizzo.text!
+        var numero : String = self.textFieldCivico.text!
         
         checkCivico(numero)
         
         // TOOO - chiamata server
-            
+        
         Services.sharedInstance.verificaIndirizzo(indirizzo, civico: numero) { (json) in
             print("stampo json verificaIndirizzo")
             print(json)
@@ -357,12 +484,12 @@ class ImpostazioniViewController: UIViewController , CLLocationManagerDelegate, 
             }
         }
     }
-
+    
     
     @IBAction func actionGeolocation(sender: UIButton) {
         
-        txtFieldCivicoCasa.text = ""
-        txtFieldIndirizzoCasa.text = ""
+        textFieldCivico.text = ""
+        textFieldIndirizzo.text = ""
         geolocationBtn.enabled = false
         verifyBtn.enabled = false
         infoAddress.removeAll()
@@ -377,7 +504,7 @@ class ImpostazioniViewController: UIViewController , CLLocationManagerDelegate, 
         }
         choiceCarta = "1"
         print("abilito notifica Carta > \(choiceCarta)")
-
+        
     }
     
     @IBAction func actionPlastica(sender: UISwitch) {
@@ -398,7 +525,7 @@ class ImpostazioniViewController: UIViewController , CLLocationManagerDelegate, 
         }
         choiceIndifferenziata = "1"
         print("disabilito notifica Indifferenziata > \(choiceIndifferenziata)")
-
+        
     }
     
     @IBAction func actionVerde(sender: UISwitch) {
@@ -410,15 +537,5 @@ class ImpostazioniViewController: UIViewController , CLLocationManagerDelegate, 
         choiceVerde = "1"
         print("abilito notifica Verde > \(switchVerde)")
     }
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
-    
+ 
 }

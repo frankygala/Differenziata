@@ -36,15 +36,15 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         print(Common.sharedInstance.getRegistredUser())
-        if(Common.sharedInstance.getRegistredUser()){
-            //let device = Common.sharedInstance.getDeviceToken()
-            let device = "111"
-            Services.sharedInstance.showTrashOfTheDay(device, completion: { (json) in
-                print("json oggiapple")
-                print(json)
-            })
-
-        }
+//        if(Common.sharedInstance.getRegistredUser()){
+//            //let device = Common.sharedInstance.getDeviceToken()
+//            let device = "111"
+//            Services.sharedInstance.showTrashOfTheDay(device, completion: { (json) in
+//                print("json oggiapple")
+//                print(json)
+//            })
+//
+//        }
     }
     
     override func didReceiveMemoryWarning() {

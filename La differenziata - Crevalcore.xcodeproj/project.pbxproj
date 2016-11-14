@@ -7,10 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		31038C1B1DD4C87F007952F5 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31038C1A1DD4C87F007952F5 /* TestViewController.swift */; };
 		313899F91DD0D54600BC78D0 /* Services.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313899F81DD0D54600BC78D0 /* Services.swift */; };
 		313899FC1DD0D62D00BC78D0 /* ToolBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313899FB1DD0D62D00BC78D0 /* ToolBarViewController.swift */; };
 		313899FF1DD0D6DC00BC78D0 /* CALENDARIO_GEOVEST2016_CREVALCORE_WEB.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 313899FE1DD0D6DC00BC78D0 /* CALENDARIO_GEOVEST2016_CREVALCORE_WEB.pdf */; };
 		31389A011DD0DA4500BC78D0 /* NumberiUtiliViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31389A001DD0DA4500BC78D0 /* NumberiUtiliViewController.swift */; };
+		317A38301DD8F946002CB9E2 /* SwiftLoading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 317A382F1DD8F946002CB9E2 /* SwiftLoading.swift */; };
 		8B4C75781DBE199E0081D397 /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4C75771DBE199E0081D397 /* Common.swift */; };
 		8B5686AB1DBDED5C004EA3D4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5686AA1DBDED5C004EA3D4 /* AppDelegate.swift */; };
 		8B5686AD1DBDED5C004EA3D4 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5686AC1DBDED5C004EA3D4 /* HomeViewController.swift */; };
@@ -43,10 +45,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		31038C1A1DD4C87F007952F5 /* TestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 		313899F81DD0D54600BC78D0 /* Services.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Services.swift; sourceTree = "<group>"; };
 		313899FB1DD0D62D00BC78D0 /* ToolBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToolBarViewController.swift; sourceTree = "<group>"; };
 		313899FE1DD0D6DC00BC78D0 /* CALENDARIO_GEOVEST2016_CREVALCORE_WEB.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = CALENDARIO_GEOVEST2016_CREVALCORE_WEB.pdf; path = ../../../../Downloads/CALENDARIO_GEOVEST2016_CREVALCORE_WEB.pdf; sourceTree = "<group>"; };
 		31389A001DD0DA4500BC78D0 /* NumberiUtiliViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumberiUtiliViewController.swift; sourceTree = "<group>"; };
+		317A382F1DD8F946002CB9E2 /* SwiftLoading.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftLoading.swift; sourceTree = "<group>"; };
 		8B4C75771DBE199E0081D397 /* Common.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Common.swift; path = ../Common.swift; sourceTree = "<group>"; };
 		8B5686A71DBDED5C004EA3D4 /* La differenziata - Crevalcore.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "La differenziata - Crevalcore.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B5686AA1DBDED5C004EA3D4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -108,6 +112,15 @@
 			name = PDF;
 			sourceTree = "<group>";
 		};
+		317A382E1DD8F933002CB9E2 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				8B4C75771DBE199E0081D397 /* Common.swift */,
+				317A382F1DD8F946002CB9E2 /* SwiftLoading.swift */,
+			);
+			name = Common;
+			sourceTree = "<group>";
+		};
 		8B56869E1DBDED5C004EA3D4 = {
 			isa = PBXGroup;
 			children = (
@@ -131,8 +144,8 @@
 		8B5686A91DBDED5C004EA3D4 /* La differenziata - Crevalcore */ = {
 			isa = PBXGroup;
 			children = (
+				317A382E1DD8F933002CB9E2 /* Common */,
 				313899FD1DD0D6B100BC78D0 /* PDF */,
-				8B4C75771DBE199E0081D397 /* Common.swift */,
 				313899FA1DD0D55800BC78D0 /* Services */,
 				8B5686DD1DBDF762004EA3D4 /* ViewController */,
 				8B5686AA1DBDED5C004EA3D4 /* AppDelegate.swift */,
@@ -172,6 +185,7 @@
 				8B5686DE1DBE0464004EA3D4 /* GuidaRifiutiViewController.swift */,
 				313899FB1DD0D62D00BC78D0 /* ToolBarViewController.swift */,
 				31389A001DD0DA4500BC78D0 /* NumberiUtiliViewController.swift */,
+				31038C1A1DD4C87F007952F5 /* TestViewController.swift */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -313,7 +327,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				31389A011DD0DA4500BC78D0 /* NumberiUtiliViewController.swift in Sources */,
+				317A38301DD8F946002CB9E2 /* SwiftLoading.swift in Sources */,
 				313899FC1DD0D62D00BC78D0 /* ToolBarViewController.swift in Sources */,
+				31038C1B1DD4C87F007952F5 /* TestViewController.swift in Sources */,
 				8B5686B31DBDED5C004EA3D4 /* La_differenziata___Crevalcore.xcdatamodeld in Sources */,
 				8B5686DF1DBE0464004EA3D4 /* GuidaRifiutiViewController.swift in Sources */,
 				8BA7300E1DC1F48700D9F9CD /* SplashScreenViewController.swift in Sources */,
