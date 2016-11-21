@@ -1,8 +1,8 @@
 //
-//  NumberiUtiliViewController.swift
+//  NumeriUtiliViewController.swift
 //  La differenziata - Crevalcore
 //
-//  Created by Francesco Galasso on 07/11/16.
+//  Created by Developer on 08/11/16.
 //  Copyright © 2016 Softweb. All rights reserved.
 //
 
@@ -10,16 +10,36 @@ import UIKit
 
 class NumeriUtiliViewController: UIViewController {
     
-    @IBOutlet weak var phoneBtn: UIButton!
+    @IBOutlet weak var callBtn: UIButton!
+    
+    let device = UIDevice.currentDevice().identifierForVendor!.UUIDString
+    
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        self.navigationController?.navigationBar.barTintColor = UIColor(hexString: "#cf2f2f")
+        self.navigationController?.navigationBar.barTintColor = UIColor(hexString: "#DD6719")
         self.navigationController?.navigationBar.tintColor = UIColor(hexString: "ffffff")
         
         self.view.backgroundColor = UIColor(hexString: "#ffffff")
         
+        if(Common.sharedInstance.connectedToNetwork()){
+            if(Common.sharedInstance.getIsModified() == true){
+                
+                var via = Common.sharedInstance.getAddress()
+                var civico = Common.sharedInstance.getNumber()
+                var carta = Common.sharedInstance.getNotificationCarta()
+                var plastica = Common.sharedInstance.getNotificationPlastica()
+                var indiff = Common.sharedInstance.getNotificationIndiff()
+                var verde = Common.sharedInstance.getNotificationVerde()
+                
+                
+                NSLog("Numeri utili civico \(civico)")
+                Services.sharedInstance.updateInformazioni(device, via: via, civico: civico, carta: carta, plastica: plastica, indiff: indiff, verde: verde, completion: { (json) in
+                    print(json)
+                })
+            }
+        }
     }
     
     override func viewDidLoad() {
@@ -33,21 +53,19 @@ class NumeriUtiliViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    
+    
+    
+    // MARK: - Actions
+    
     @IBAction func actionPhoneCall(sender: UIButton) {
-        callNumber((phoneBtn.titleLabel?.text)!)
+        callNumber((callBtn.titleLabel?.text)!)
     }
     
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
     
-    // MARK: Call Number
+    
+    // MARK: - Misc
+    
     func callNumber(number : String) {
         
         let str = number
@@ -82,9 +100,6 @@ class NumeriUtiliViewController: UIViewController {
         
         self.presentViewController(alert, animated: true, completion: nil)
     }
-    
-    //    func currentRootViewController() -> UIViewController {
-    //        return UIApplication.sharedApplication().keyWindow?.rootViewController as! MainViewController
-    //    }
+
     
 }

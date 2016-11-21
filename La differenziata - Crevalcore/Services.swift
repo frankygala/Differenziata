@@ -19,7 +19,7 @@ let IMPOSTAZIONI_PATH : String = "setupapple.php?"
 let LISTA_INDIRIZZI : String = "listaindirizzi.php"
 let ULTIMO_SYNC : String = "lastsync.php"
 
-// capire se bisogna spostare per refactoring
+
 // MARK:  JSON Enums
 enum JSONError: String, ErrorType {
     case NoData = "ERROR: no data"
@@ -42,18 +42,16 @@ class Services: NSObject {
             (data: NSData?, response: NSURLResponse?, error: NSError?) in
             if (error == nil && data != nil) {
                 if let result = self.NSDataToJson(data!) {
-                    dispatch_async(dispatch_get_main_queue()) {
                         completion(result)
-                    }
                 }
             } else {
                 print(error!.description)
             }
         }
         task.resume() //you need to call this
+        
     }
-
-
+    
     func listaIndirizzi(completion:((NSDictionary) -> ())) {
         print("Creating request")
         
@@ -65,9 +63,7 @@ class Services: NSObject {
             (data: NSData?, response: NSURLResponse?, error: NSError?) in
             if (error == nil && data != nil) {
                 if let result = self.NSDataToJson(data!) {
-                    dispatch_async(dispatch_get_main_queue()) {
                         completion(result)
-                    }
                 }
             } else {
                 print(error!.description)
@@ -77,22 +73,25 @@ class Services: NSObject {
     }
     
     
-    func registrazioneUtente(uuid: String, completion:((NSDictionary) -> ())) {
-        
-        var uuid = "uid="+"\(uuid)"
-        let url: NSURL = NSURL(string: "\(DOMAIN_URL)\(REGISTRAZIONE_PATH)"+"\(uuid)")!
+    func registrazioneUtente(uid: String, completion:((NSDictionary) -> ())) {
+        var uuid : String!
+        uuid = "uid="+"\(uid)"
+        var token = Common.sharedInstance.getToken()
+        let url: NSURL = NSURL(string: "\(DOMAIN_URL)\(REGISTRAZIONE_PATH)"+"\(uuid)&token=\(token)")! // .stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!
         print("URL > \(url)")
-        let urlRequest = NSMutableURLRequest(URL: url, cachePolicy: .ReloadIgnoringLocalAndRemoteCacheData, timeoutInterval: 15.0)
+        //let urlRequest = NSMutableURLRequest(URL: url, cachePolicy: .ReloadIgnoringLocalAndRemoteCacheData, timeoutInterval: 15.0)
+        let urlRequest = NSMutableURLRequest(URL: url)
         let session = NSURLSession.sharedSession()
         let task = session.dataTaskWithRequest(urlRequest) {
             (data: NSData?, response: NSURLResponse?, error: NSError?) in
             if (error == nil && data != nil) {
                 if let result = self.NSDataToJson(data!) {
-                    dispatch_async(dispatch_get_main_queue()) {
                         completion(result)
-                    }
                 }
             } else {
+                if let result = self.NSDataToJson(data!) {
+                    completion(result)
+                }
                 print(error!.description)
             }
         }
@@ -116,9 +115,7 @@ class Services: NSObject {
             (data: NSData?, response: NSURLResponse?, error: NSError?) in
             if (error == nil && data != nil) {
                 if let result = self.NSDataToJson(data!) {
-                    dispatch_async(dispatch_get_main_queue()) {
                         completion(result)
-                    }
                 }
             } else {
                 print(error!.description)
@@ -129,18 +126,15 @@ class Services: NSObject {
     
     func richiediImpostazioni(uuid: String, completion:((NSDictionary) -> ())) {
         var uuid = "uid="+"\(uuid)"
-        //var uuid = "uid=111"
         let url: NSURL = NSURL(string: "\(DOMAIN_URL)\(IMPOSTAZIONI_PATH)\(uuid)")!
         print("URL > \(url)")
-        let urlRequest = NSMutableURLRequest(URL: url, cachePolicy: .ReloadIgnoringLocalAndRemoteCacheData, timeoutInterval: 15.0)
+        let urlRequest = NSMutableURLRequest(URL: url, cachePolicy: .ReloadIgnoringLocalAndRemoteCacheData, timeoutInterval: 5.0)
         let session = NSURLSession.sharedSession()
         let task = session.dataTaskWithRequest(urlRequest) {
             (data: NSData?, response: NSURLResponse?, error: NSError?) in
             if (error == nil && data != nil) {
                 if let result = self.NSDataToJson(data!) {
-                    dispatch_async(dispatch_get_main_queue()) {
                         completion(result)
-                    }
                 }
             } else {
                 print(error!.description)
@@ -172,9 +166,7 @@ class Services: NSObject {
             (data: NSData?, response: NSURLResponse?, error: NSError?) in
             if (error == nil && data != nil) {
                 if let result = self.NSDataToJson(data!) {
-                    dispatch_async(dispatch_get_main_queue()) {
                         completion(result)
-                    }
                 }
             } else {
                 print(error!.description)
@@ -190,9 +182,7 @@ class Services: NSObject {
         let url: NSURL = NSURL(string: "\(DOMAIN_URL)\(OGGI_PATH)\(uuid)")!
         print("URL > \(url)")
         let request:NSMutableURLRequest = NSMutableURLRequest(URL:url)
-        
-        //request.HTTPMethod = "GET"
-        
+                
         let urlRequest = NSMutableURLRequest(URL: url, cachePolicy: .ReloadIgnoringLocalAndRemoteCacheData, timeoutInterval: 15.0)
         print("Creating session updateInformazioni")
         let session = NSURLSession.sharedSession()
@@ -200,20 +190,16 @@ class Services: NSObject {
             (data: NSData?, response: NSURLResponse?, error: NSError?) in
             if (error == nil && data != nil) {
                 if let result = self.NSDataToJson(data!) {
-                    dispatch_async(dispatch_get_main_queue()) {
                         completion(result)
-                    }
                 }
             } else {
                 print(error!.description)
             }
         }
         task.resume()
-        
-        
     }
     
-    private func NSDataToJson(data:NSData) -> NSDictionary? {
+    func NSDataToJson(data:NSData) -> NSDictionary? {
         do {
             let json: AnyObject? = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments)
             let result = json as? NSDictionary

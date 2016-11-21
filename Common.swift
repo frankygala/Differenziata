@@ -29,21 +29,71 @@ extension UIColor {
     }
 }
 
-private let userDefaults = NSUserDefaults.standardUserDefaults()
 
+private let userDefaults = NSUserDefaults.standardUserDefaults()
 private let _registredUser : String = "registredUser"
 private let _deviceToken : String = "deviceToken"
-// inutili cancellare alla fine per refactoring
+private let _lastSync : String = "lastSync"
+private let _registredAddress : String = "registredAddress"
+private let _token : String = "token"
+private let _firstTimeAccess : String = "firstTimeAccess"
+private let _isModified : String = "notificationIsModified"
+private let _choicePaper : String = "choicePaper"
+private let _choicePlastic : String = "choicePlastic"
+private let _choiceGreen : String = "choiceGreen"
+private let _choiceUndifferentiated : String = "choiceUndifferentiated"
 private let _address : String = "address"
-private let _streetNumber : String = "streetNumber"
+private let _number : String = "number"
+
 
 class Common: NSObject {
     
     static let sharedInstance = Common()
     
-    var regReply: [String] = []
     
-    // MARK: Street User's Registred
+    
+    //MARK: - token device
+    func setToken(token : String) {
+        userDefaults.setObject(token, forKey: _token)
+        userDefaults.synchronize()
+    }
+    
+    func getToken() -> String{
+        return userDefaults.objectForKey(_token) as? String ?? ""
+    }
+    
+    
+    
+    // MARK: - LastSync
+    func setLastSync(data : String) {
+        userDefaults.setObject(data, forKey: _lastSync)
+        userDefaults.synchronize()
+    }
+    
+    func getLastSync() -> String {
+        return userDefaults.objectForKey(_lastSync) as? String ?? ""
+    }
+    
+    func cleanLastSync() {
+        userDefaults.removeObjectForKey(_lastSync)
+        userDefaults.synchronize()
+    }
+    
+    
+    
+    // MARK: - User Logged First Time
+    func setFirstTime(firstTime : Bool){
+        userDefaults.setObject(firstTime, forKey: _firstTimeAccess)
+        userDefaults.synchronize()
+    }
+    
+    func getFirstTime() -> Bool{
+        return userDefaults.boolForKey(_firstTimeAccess)
+    }
+    
+    
+    
+    // MARK: - User Registration
     func setRegistredUser(registredUser : Bool) {
         userDefaults.setBool(registredUser, forKey: _registredUser)
         userDefaults.synchronize()
@@ -58,33 +108,27 @@ class Common: NSObject {
         userDefaults.synchronize()
     }
     
-    // MARK:  Device Token
-    func saveDeviceToken() {
-        let device = UIDevice.currentDevice().identifierForVendor!.UUIDString
-        userDefaults.setObject(device, forKey: _deviceToken)
+    
+    
+    // MARK: - Address Registration
+    func setRegistredAddress(registredAddress : Bool) {
+        userDefaults.setBool(registredAddress, forKey: _registredAddress)
         userDefaults.synchronize()
     }
     
-    func getDeviceToken() -> String {
-        return userDefaults.objectForKey(_deviceToken) as? String ?? ""
+    func getRegistredAddress() -> Bool {
+        return userDefaults.boolForKey(_registredAddress) as Bool
     }
     
-    // MARK: Address
-    func setAddress(Address : Bool){
-        userDefaults.setBool(Address, forKey: _address)
+    func cleanRegistredAddress() {
+        userDefaults.removeObjectForKey(_registredAddress)
         userDefaults.synchronize()
     }
     
-    func cleanAddress() {
-        userDefaults.removeObjectForKey(_address)
-        userDefaults.synchronize()
-    }
     
-    func getAddress() -> String {
-        return userDefaults.objectForKey(_address) as! String
-    }
     
-    // MARK: Connection
+    
+    // MARK: - Connection
     func connectedToNetwork() -> Bool {
         
         var zeroAddress = sockaddr_in()
@@ -107,7 +151,9 @@ class Common: NSObject {
         return (isReachable && !needsConnection)
     }
     
-    // MARK: Alert Message
+    
+    
+    // MARK: - Alert Message
     func callAlert(string : String){
         
         let attributedString = NSAttributedString(string: "ATTENZIONE", attributes: [
@@ -122,4 +168,122 @@ class Common: NSObject {
         alert.addAction(UIAlertAction(title: "Chiudi", style: UIAlertActionStyle.Default, handler: nil))
     }
     
+    
+    
+    // MARK: - User Notification Changed by User
+    func setIsModified(isModified : Bool) {
+        userDefaults.setBool(isModified, forKey: _isModified)
+        userDefaults.synchronize()
+    }
+    
+    func getIsModified() -> Bool {
+        return userDefaults.boolForKey(_isModified) as Bool
+    }
+    
+    func cleanIsModified() {
+        userDefaults.removeObjectForKey(_isModified)
+        userDefaults.synchronize()
+    }
+    
+    
+    
+    // MARK: - Notification Paper
+    func setNotificationCarta(choicePaper : String) {
+        userDefaults.setObject(choicePaper, forKey: _choicePaper)
+        userDefaults.synchronize()
+    }
+    
+    func getNotificationCarta() -> String {
+        return userDefaults.objectForKey(_choicePaper) as? String ?? ""
+    }
+    
+    func cleanNotificationCarta() {
+        userDefaults.removeObjectForKey(_choicePaper)
+        userDefaults.synchronize()
+    }
+    
+    
+    
+    // MARK: - Notification Plastic
+    func setNotificationPlastica(choicePlastc : String) {
+        userDefaults.setObject(choicePlastc, forKey: _choicePlastic)
+        userDefaults.synchronize()
+    }
+    
+    func getNotificationPlastica() -> String {
+        return userDefaults.objectForKey(_choicePlastic) as? String ?? ""
+    }
+    
+    func cleanNotificationPlastica() {
+        userDefaults.removeObjectForKey(_choicePlastic)
+        userDefaults.synchronize()
+    }
+    
+    
+    
+    // MARK: - Notification Green
+    func setNotificationVerde(choiceGreen : String) {
+        userDefaults.setObject(choiceGreen, forKey: _choiceGreen)
+        userDefaults.synchronize()
+    }
+    
+    func getNotificationVerde() -> String {
+        return userDefaults.objectForKey(_choiceGreen) as? String ?? ""
+    }
+    
+    func cleanNotificationVerde() {
+        userDefaults.removeObjectForKey(_choiceGreen)
+        userDefaults.synchronize()
+    }
+    
+    
+    
+    // MARK: - Notification Undifferentiated
+    func setNotificationIndiff(choiceUndiff : String) {
+        userDefaults.setObject(choiceUndiff, forKey: _choiceUndifferentiated)
+        userDefaults.synchronize()
+    }
+    
+    func getNotificationIndiff() -> String {
+        return userDefaults.objectForKey(_choiceUndifferentiated) as? String ?? ""
+    }
+    
+    func cleanNotificationIndiff() {
+        userDefaults.removeObjectForKey(_choiceUndifferentiated)
+        userDefaults.synchronize()
+    }
+    
+    
+    
+    // MARK: - Address
+    func setAddress(address : String) {
+        userDefaults.setObject(address, forKey: _address)
+        userDefaults.synchronize()
+    }
+    
+    func getAddress() -> String {
+        return userDefaults.objectForKey(_address) as? String ?? ""
+    }
+    
+    func cleanAddress() {
+        userDefaults.removeObjectForKey(_address)
+        userDefaults.synchronize()
+    }
+    
+    
+    
+    // MARK: - Address
+    func setNumber(number : String) {
+        userDefaults.setObject(number, forKey: _number)
+        userDefaults.synchronize()
+    }
+    
+    func getNumber() -> String {
+        return userDefaults.objectForKey(_number) as? String ?? ""
+    }
+    
+    func cleanNumber() {
+        userDefaults.removeObjectForKey(_number)
+        userDefaults.synchronize()
+    }
 }

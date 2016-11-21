@@ -42,7 +42,7 @@ class SwiftLoading {
     }
     
     func hideLoading(){
-        UIView.animateWithDuration(0.0, delay: 1.0, options: .CurveEaseOut, animations: {
+        UIView.animateWithDuration(0.0, delay: 0.0, options: .CurveEaseOut, animations: {
             self.loadingView.alpha = 0.0
             self.activityIndicator.stopAnimating()
             }, completion: { finished in
