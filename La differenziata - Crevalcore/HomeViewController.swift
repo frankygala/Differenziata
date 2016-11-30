@@ -17,7 +17,6 @@ class HomeViewController: UIViewController {
     
     var arrayDatePattume = [String]()
     var currentDay: String!
-    var arrayPattume = [String]()
     var list = [DataObj]()
     var list2 = [DataObj]()
     var sortedDates = [String]()
@@ -68,7 +67,7 @@ class HomeViewController: UIViewController {
         let day = c.day
         let month = c.month
         let year = c.year
-        currentDay = "\(day)-\(month)-\(year)"
+        currentDay = "\(month)-\(day)-\(year)" //MM-dd-YYYY
         print("currentDay : \(currentDay)")
         
         var firstTime = Common.sharedInstance.getFirstTime()
@@ -171,32 +170,48 @@ class HomeViewController: UIViewController {
     
     // MARK: - Misc
     
-    func visualizzaInfoPattume(numeroRusco : String) -> [String]{
-        var array = [String]()
+    func visualizzaNomePattume(numeroRusco : String) -> String{
+        var info : String!
         
         switch numeroRusco {
         case "1" :
-            array.append("Carta")
-            array.append("1f97d0")
+            info = "Carta"
         case "2" :
-            array.append("Indifferenziata")
-            array.append("9D9D9C")
+            info = "Indifferenziata"
         case "3" :
-            array.append("Plastica")
-            array.append("fcc400")
+            info = "Plastica"
         case "4" :
-            array.append("Umido")
-            array.append("a2732b")
+            info = "Umido"
         case "5" :
-            array.append("Vetro e Lattine")
-            array.append("44a12b")
+            info = "Vetro e Lattine"
         case "6" :
-            array.append("Verde")
-            array.append("BCCF00")
+            info = "Verde"
         default:
             break;
         }
-        return array
+        return info
+    }
+    
+    func visualizzaColorePattume(numeroRusco : String) -> String{
+        var info : String!
+        
+        switch numeroRusco {
+        case "1" :
+            info = "1f97d0"
+        case "2" :
+            info = "9D9D9C"
+        case "3" :
+            info = "fcc400"
+        case "4" :
+            info = "a2732b"
+        case "5" :
+            info = "44a12b"
+        case "6" :
+            info = "BCCF00"
+        default:
+            break;
+        }
+        return info
     }
     
     func visualizzaImmondizia() {
@@ -232,9 +247,14 @@ class HomeViewController: UIViewController {
                             mat = json[i]["materiale"] as! String
                         }
                         var data = json[i]["data"] as! String
-                        let obj = DataObj(materiale: mat, data: data)
+//                        let obj = DataObj(materiale: mat, data: data)
+//                        self.list.append(obj)
+                        var tempData = json[i]["data"] as! String
+                        let tempDataArr = tempData.characters.split{$0 == "-"}.map(String.init)
+                        var dataFinal = "\(tempDataArr[1])-\(tempDataArr[0])-\(tempDataArr[2])" //MM-dd-YYYY
+                        let obj = DataObj(materiale: mat, data: dataFinal)
                         self.list.append(obj)
-                        self.arrayDatePattume.append(json[i]["data"] as! String)
+                        self.arrayDatePattume.append(dataFinal)
                     }
                     
                     if(self.arrayDatePattume.isEmpty){
@@ -247,12 +267,12 @@ class HomeViewController: UIViewController {
                         self.sortedDates = self.arrayDatePattume.sort(){$0 < $1}
                         print(self.sortedDates)
                         var confronto = self.sortedDates[0]
+                        print("CONFRONTO DATA \(confronto)")
                         let dateStringFormatter = NSDateFormatter()
-                        dateStringFormatter.dateFormat = "dd-MM-yyyy"
+                        dateStringFormatter.dateFormat = "MM-dd-yyyy"
                         dateStringFormatter.locale = NSLocale(localeIdentifier: "it")
                         dateStringFormatter.timeZone = NSTimeZone(name: "GMT+1")
                         let date = dateStringFormatter.dateFromString(confronto) //nsdate
-                        print(date)
                         var formatter20 = NSDateFormatter()
                         formatter20.dateStyle = NSDateFormatterStyle.FullStyle
                         formatter20.timeStyle = .NoStyle
@@ -274,7 +294,6 @@ class HomeViewController: UIViewController {
                                 self.reminderLbl.text = "Oggi ritirano"
                             } else {
                                 self.reminderLbl.text = "Prossimo ritiro"
-                                
                             }
                             
                             self.list.sortInPlace({ $0.data < $1.data })
@@ -282,25 +301,25 @@ class HomeViewController: UIViewController {
                             for k in 0..<self.list.count{
                                 
                                 let t = self.list[k].getData()
+                                NSLog("t")
+                                NSLog(t)
                                 if(t == self.sortedDates[0]){
-                                    var numMat = self.list[k].getMat()
-                                    self.arrayPattume = self.visualizzaInfoPattume(numMat)
                                     let obj = DataObj(materiale: self.list[k].getMat(), data: self.list[k].getData())
-                                    print(obj)
                                     self.list2.append(obj)
                                 }
                             }
-                            
+
                             for j in 0..<self.list2.count{
+                            
                                 self.pattumeLabels[j].alpha = 1
                                 self.pattumeImageViews[j].alpha = 1
                                 self.pattumeViews[j].alpha = 1
-                                //self.pattumeLabels[j].text = self.arrayPattume[0]
-                                self.pattumeLabels[j].text = "Indifferenziata"
-                                
-                                self.pattumeViews[j].backgroundColor = UIColor(hexString:self.arrayPattume[1])
+                                var num = self.list2[j].getMat()
+                                var testo = self.visualizzaNomePattume(num)
+                                var colore = self.visualizzaColorePattume(num)
+                                self.pattumeLabels[j].text = testo
+                                self.pattumeViews[j].backgroundColor = UIColor(hexString:colore)
                                 self.pattumeImageViews[j].image = UIImage(named: "trash")
-                                
                             }
                             
                             SwiftLoading().hideLoading()

@@ -100,26 +100,29 @@ class TestViewController: UIViewController  , UITableViewDelegate, UITableViewDa
                     self.verdeDown = pushVerde
                     
                     //salvo la scelta della carta scaricata
-                    Common.sharedInstance.setNotificationCarta(pushCarta)
+                    //Common.sharedInstance.setNotificationCarta(pushCarta)
+                    SwiftLoading().hideLoading()
+
                     
                     //aggiorno i dati visualizzati con i dati scaricati da internet
-                    self.choiceVerde = self.verdeDown
-                    self.choiceIndifferenziata = self.indiffDown
-                    self.choicePlastica = self.plastDown
-                    self.choiceCarta = self.cartaDown
-                    self.addressLblRegistred.text = indirizzo
-                    self.numberLblRegistred.text = civico
-                    self.zoneLblRegistred.text = zona
-                    self.switchIndiff.setOn(self.convertToSwitch(pushIndifferenziata), animated: false)
-                    self.switchCarta.setOn(self.convertToSwitch(pushCarta), animated: false)
-                    self.switchVerde.setOn(self.convertToSwitch(pushVerde), animated: false)
-                    self.switchPlastica.setOn(self.convertToSwitch(pushPlastica), animated: false)
-                    
+                    dispatch_async(dispatch_get_main_queue()) {
+                        self.choiceVerde = self.verdeDown
+                        self.choiceIndifferenziata = self.indiffDown
+                        self.choicePlastica = self.plastDown
+                        self.choiceCarta = self.cartaDown
+                        self.addressLblRegistred.text = indirizzo
+                        self.numberLblRegistred.text = civico
+                        self.zoneLblRegistred.text = zona
+                        self.switchIndiff.setOn(self.convertToSwitch(pushIndifferenziata), animated: false)
+                        self.switchCarta.setOn(self.convertToSwitch(pushCarta), animated: false)
+                        self.switchVerde.setOn(self.convertToSwitch(pushVerde), animated: false)
+                        self.switchPlastica.setOn(self.convertToSwitch(pushPlastica), animated: false)
+                    }
                     NSLog("scelta verde > \(self.choiceVerde)")
                     NSLog("scelta indiff > \(self.choiceIndifferenziata)")
                     NSLog("scelta plastica > \(self.choicePlastica)")
                     NSLog("scelta carta > \(self.choiceCarta)")
-                    SwiftLoading().hideLoading()
+//                    SwiftLoading().hideLoading()
                     
                 }
             } else { // mi devo registrare
@@ -304,8 +307,8 @@ class TestViewController: UIViewController  , UITableViewDelegate, UITableViewDa
             self.navBarBtn.title = "Modifica"
             self.navBarBtn.enabled = false
             
-            self.addressLblRegistred.text = ""
-            self.numberLblRegistred.text = ""
+//            self.addressLblRegistred.text = ""
+//            self.numberLblRegistred.text = ""
             
         default:
             break
@@ -379,6 +382,7 @@ class TestViewController: UIViewController  , UITableViewDelegate, UITableViewDa
         
         print("STAMPO LE LOCATIONS")
         print(locations)
+        print(locations.count)
         location = locations.last! as CLLocation
         
         // Add below code to get address for touch coordinates.
@@ -387,40 +391,48 @@ class TestViewController: UIViewController  , UITableViewDelegate, UITableViewDa
         
         let loc = CLLocation(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
         
-        if(location.horizontalAccuracy <= 10){
+//        if(location.horizontalAccuracy <= 10){
+//            locationManager.stopUpdatingLocation()
+//            locationManager.delegate = nil
+//        }
+        print(loc)
+
+        if(loc.horizontalAccuracy <= 20){
+            geoCoder.reverseGeocodeLocation(loc, completionHandler: { (placemarks, error) -> Void in
+                
+                // Place details
+                var placeMark: CLPlacemark!
+                placeMark = placemarks?[0]
+                
+                
+                
+                // Nome via
+                if let street = placeMark.addressDictionary!["Thoroughfare"] as? NSString {
+                    //self.infoAddress.append(street as String)
+                    self.textFieldIndirizzo.text = street as String
+                    print(street)
+                }
+                
+                // Civico
+                if let buildingNumber = placeMark.addressDictionary!["SubThoroughfare"] as? NSString {
+                    //self.infoAddress.append(buildingNumber as String)
+                    self.textFieldCivico.text = buildingNumber as String
+                    print(buildingNumber)
+                }
+                
+                self.geolocationBtn.enabled = true
+                self.verifyBtn.enabled = true
+                SwiftLoading().hideLoading()
+                
+                
+            })
+            
             locationManager.stopUpdatingLocation()
             locationManager.delegate = nil
         }
-        //print(loc)
-        geoCoder.reverseGeocodeLocation(loc, completionHandler: { (placemarks, error) -> Void in
-            
-            // Place details
-            var placeMark: CLPlacemark!
-            placeMark = placemarks?[0]
-            
-            // Nome via
-            if let street = placeMark.addressDictionary!["Thoroughfare"] as? NSString {
-                //self.infoAddress.append(street as String)
-                self.textFieldIndirizzo.text = street as String
-                print(street)
-            }
-            
-            // Civico
-            if let buildingNumber = placeMark.addressDictionary!["SubThoroughfare"] as? NSString {
-                //self.infoAddress.append(buildingNumber as String)
-                self.textFieldCivico.text = buildingNumber as String
-                print(buildingNumber)
-            }
-            
-            self.geolocationBtn.enabled = true
-            self.verifyBtn.enabled = true
-            SwiftLoading().hideLoading()
-            
-            
-        })
         
-        //        locationManager.stopUpdatingLocation()
-        //        locationManager.delegate = nil
+//                locationManager.stopUpdatingLocation()
+//                locationManager.delegate = nil
         
     }
     
@@ -584,7 +596,6 @@ class TestViewController: UIViewController  , UITableViewDelegate, UITableViewDa
             
             self.verifyBtn.enabled = true
             self.dismissViewControllerAnimated(true, completion: nil)
-            
         }))
         
         alert.addAction(UIAlertAction(title: "Salva", style: UIAlertActionStyle.Default, handler: {(action:UIAlertAction!) in
@@ -621,10 +632,10 @@ class TestViewController: UIViewController  , UITableViewDelegate, UITableViewDa
             
             var v = "indirizzo=\(via2)"
             var c = "civico=\(civico)"
-            var paper = "carta=\(self.choiceCarta)"
-            var plastic = "plastica=\(self.choicePlastica)"
-            var rusco = "indifferenziata=\(self.choiceIndifferenziata)"
-            var green = "verde=\(self.choiceVerde)"
+            var paper = "\(self.choiceCarta)"
+            var plastic = "\(self.choicePlastica)"
+            var rusco = "\(self.choiceIndifferenziata)"
+            var green = "\(self.choiceVerde)"
             
             
             // aggiorno i common
@@ -762,6 +773,11 @@ class TestViewController: UIViewController  , UITableViewDelegate, UITableViewDa
     }
     
     @IBAction func actionVerificaIndirizzo(sender: UIButton) {
+        
+        //chetto dismiss keyboard
+        dispatch_async(dispatch_get_main_queue()) {
+            self.view.endEditing(true)
+        }
         indirizzoModify  = self.textFieldIndirizzo.text!
         civicoModify = self.textFieldCivico.text!
         SwiftLoading().showLoading()
