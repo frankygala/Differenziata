@@ -79,9 +79,6 @@ class TestViewController: UIViewController  , UITableViewDelegate, UITableViewDa
                     
                     var indirizzo = json.objectForKey("indirizzo") as! String
                     var civico = json.objectForKey("civico") as! String
-                    print("@@@@@@@@@")
-                    print("civico scaricato \(civico)")
-                    print("@@@@@@@@@")
                     
                     var zona = json.objectForKey("zona") as! String
                     var pushVerde = json.objectForKey("verde") as! String
@@ -99,13 +96,10 @@ class TestViewController: UIViewController  , UITableViewDelegate, UITableViewDa
                     self.plastDown = pushPlastica
                     self.verdeDown = pushVerde
                     
-                    //salvo la scelta della carta scaricata
-                    //Common.sharedInstance.setNotificationCarta(pushCarta)
                     SwiftLoading().hideLoading()
-
                     
                     //aggiorno i dati visualizzati con i dati scaricati da internet
-                    dispatch_async(dispatch_get_main_queue()) {
+                    dispatch_async(dispatch_get_main_queue()) { //per aggiornamenti grafici
                         self.choiceVerde = self.verdeDown
                         self.choiceIndifferenziata = self.indiffDown
                         self.choicePlastica = self.plastDown
@@ -118,11 +112,11 @@ class TestViewController: UIViewController  , UITableViewDelegate, UITableViewDa
                         self.switchVerde.setOn(self.convertToSwitch(pushVerde), animated: false)
                         self.switchPlastica.setOn(self.convertToSwitch(pushPlastica), animated: false)
                     }
+                    
                     NSLog("scelta verde > \(self.choiceVerde)")
                     NSLog("scelta indiff > \(self.choiceIndifferenziata)")
                     NSLog("scelta plastica > \(self.choicePlastica)")
                     NSLog("scelta carta > \(self.choiceCarta)")
-//                    SwiftLoading().hideLoading()
                     
                 }
             } else { // mi devo registrare

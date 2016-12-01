@@ -63,8 +63,8 @@
         <!--Numeri Utili-->
         <scene sceneID="eoU-i8-FpX">
             <objects>
-                <navigationController restorationIdentifier="numeriNav" id="njs-G9-d8O" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" tag="2" title="Numeri Utili" id="3Rm-mw-bDb"/>
+                <navigationController id="njs-G9-d8O" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Numeri Utili" id="3Rm-mw-bDb"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="J2T-Pm-neO">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -619,7 +619,7 @@
         <!--Guida-->
         <scene sceneID="5BP-Gy-mWM">
             <objects>
-                <navigationController restorationIdentifier="guidaNav" id="dVt-Q8-gOt" sceneMemberID="viewController">
+                <navigationController id="dVt-Q8-gOt" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Guida" id="XEt-8S-qRb"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="AIr-8Q-2RB">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -670,7 +670,7 @@
         <!--Impostazioni-->
         <scene sceneID="ihR-x1-cRY">
             <objects>
-                <navigationController restorationIdentifier="impostazioniNav" storyboardIdentifier="ImpostazioniID" id="rPu-VW-kDg" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="ImpostazioniID" id="rPu-VW-kDg" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Impostazioni" id="lY3-eo-dMc"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="jU9-iU-wgD">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -687,7 +687,7 @@
         <!--Home-->
         <scene sceneID="DVz-j2-a8c">
             <objects>
-                <navigationController restorationIdentifier="homeNav" id="E3B-cW-0sp" sceneMemberID="viewController">
+                <navigationController id="E3B-cW-0sp" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Home" id="gJn-Du-LP6"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="jYM-Hl-eC5">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>

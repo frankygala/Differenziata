@@ -12,7 +12,6 @@ public class DataObj {
 
     var materiale: String!
     var data: String!
-
     
     internal init(materiale : String, data : String){        
         self .materiale = materiale
@@ -20,7 +19,7 @@ public class DataObj {
     }
     
     func getData() -> String {
-    return self.data
+        return self.data
     }
     
     func getMat() -> String {

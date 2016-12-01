@@ -51,7 +51,7 @@ class Common: NSObject {
     static let sharedInstance = Common()
     
     
-    // MARK: - Address Modification in progress
+    // MARK: - Address Modification in Progress
     func setModificationInProgress(modif : Bool){
         userDefaults.setObject(modif, forKey: _modificationInProgress)
         userDefaults.synchronize()
