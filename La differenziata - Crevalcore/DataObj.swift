@@ -9,16 +9,12 @@
 import Foundation
 
 public class DataObj {
-    //code here
-    
 
     var materiale: String!
     var data: String!
 
     
-    internal init(materiale : String, data : String){
-        //    internal init(id: Int32, url: String, picture: String, shareDate: NSDate, name: String){
-        
+    internal init(materiale : String, data : String){        
         self .materiale = materiale
         self.data = data
     }

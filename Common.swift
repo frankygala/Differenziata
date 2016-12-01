@@ -44,13 +44,22 @@ private let _choiceGreen : String = "choiceGreen"
 private let _choiceUndifferentiated : String = "choiceUndifferentiated"
 private let _address : String = "address"
 private let _number : String = "number"
-
+private let _modificationInProgress : String = "modificationInProgress"
 
 class Common: NSObject {
     
     static let sharedInstance = Common()
     
     
+    // MARK: - Address Modification in progress
+    func setModificationInProgress(modif : Bool){
+        userDefaults.setObject(modif, forKey: _modificationInProgress)
+        userDefaults.synchronize()
+    }
+    
+    func getModificationInProgress() -> Bool{
+        return userDefaults.boolForKey(_modificationInProgress)
+    }
     
     //MARK: - token device
     func setToken(token : String) {

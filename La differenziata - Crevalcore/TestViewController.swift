@@ -69,13 +69,13 @@ class TestViewController: UIViewController  , UITableViewDelegate, UITableViewDa
             notificheView.alpha = 1
             if (Common.sharedInstance.getRegistredAddress()){ //mi sono registrato precedentemente
                 self.loadUI("registrato")
-                
                 SwiftLoading().showLoading()
                 Services.sharedInstance.richiediImpostazioni(device) { (json) in
                     NSLog("richiedi impostazioni WillAppear")
                     
                     self.navBarBtn.title = "Modifica"
                     self.navBarBtn.enabled = true
+                    Common.sharedInstance.setModificationInProgress(false)
                     
                     var indirizzo = json.objectForKey("indirizzo") as! String
                     var civico = json.objectForKey("civico") as! String
@@ -632,19 +632,19 @@ class TestViewController: UIViewController  , UITableViewDelegate, UITableViewDa
             
             var v = "indirizzo=\(via2)"
             var c = "civico=\(civico)"
-            var paper = "\(self.choiceCarta)"
-            var plastic = "\(self.choicePlastica)"
-            var rusco = "\(self.choiceIndifferenziata)"
-            var green = "\(self.choiceVerde)"
+            var paper = "carta=\(self.choiceCarta)"
+            var plastic = "plastica=\(self.choicePlastica)"
+            var rusco = "indifferenziata=\(self.choiceIndifferenziata)"
+            var green = "verde=\(self.choiceVerde)"
             
             
             // aggiorno i common
             Common.sharedInstance.setAddress(via)
             Common.sharedInstance.setNumber(civico)
-            Common.sharedInstance.setNotificationCarta(paper)
-            Common.sharedInstance.setNotificationPlastica(plastic)
-            Common.sharedInstance.setNotificationVerde(green)
-            Common.sharedInstance.setNotificationIndiff(rusco)
+            Common.sharedInstance.setNotificationCarta(self.choiceCarta)
+            Common.sharedInstance.setNotificationPlastica(self.choicePlastica)
+            Common.sharedInstance.setNotificationVerde(self.choiceIndifferenziata)
+            Common.sharedInstance.setNotificationIndiff(self.choiceIndifferenziata)
             
             let requestURL: NSURL = NSURL(string: "http://crevalcore.ladifferenziata.it/updateapple.php?uid=\(self.device)&\(v)&\(c)&\(paper)&\(plastic)&\(rusco)&\(green)")!
             print("~~~~~~~~~~~~~~~~~ \(requestURL)")
@@ -674,6 +674,7 @@ class TestViewController: UIViewController  , UITableViewDelegate, UITableViewDa
                                 Common.sharedInstance.setFirstTime(false)
                                 Common.sharedInstance.setRegistredUser(true)
                                 Common.sharedInstance.setRegistredAddress(true)
+                                Common.sharedInstance.setModificationInProgress(false)
                                 dispatch_async(dispatch_get_main_queue()) {
                                     
                                     self.tabBarController?.selectedIndex = 0
@@ -769,7 +770,8 @@ class TestViewController: UIViewController  , UITableViewDelegate, UITableViewDa
     
     
     @IBAction func actionNavBarBtn(sender: UIBarButtonItem) {
-            self.loadUI("registrare")
+        self.loadUI("registrare")
+        Common.sharedInstance.setModificationInProgress(true)
     }
     
     @IBAction func actionVerificaIndirizzo(sender: UIButton) {
